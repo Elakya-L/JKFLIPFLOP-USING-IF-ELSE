@@ -34,15 +34,43 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1. **Write the Verilog code** for JK flip-flop (inputs: J, K, clk, rst; outputs: Q, Qbar) and save the file in Quartus.
+2. **Create a new project & add the Verilog file**, set the JK flipflop module as the top-level entity.
+3. **Compile the project** and fix any syntax or compilation errors.
+4. **Open Simulation Waveform Editor**, add signals (J, K, clk, rst, Q, Qbar) and apply input combinations according to the JK truth table (00, 01, 10, 11) with clock pulses.
+5. **Run functional simulation** and verify that simulated outputs (Q, Qbar) match the JK flip-flop functional table (no change, reset, set, toggle).
+
 
 **PROGRAM**
+JK FLIPFLOP
+```
+module jkflipflop(j,k,clk,q,qbar);
+input j,k,clk;
+output reg q,qbar;
+initial 
+begin
+q=1'b0;
+qbar=1'b1;
+end 
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+always @(posedge clk)
+begin 
+q<=(j&~q)|(~k&q);
+qbar<=~q;
+end
+endmodule
+```
 
 **RTL LOGIC FOR FLIPFLOPS**
 
+<img width="1920" height="1080" alt="Screenshot 2025-12-06 115651" src="https://github.com/user-attachments/assets/6a7c7803-981f-41fa-9d04-01ac3fe3d805" />
+
+
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
+<img width="1920" height="1080" alt="Screenshot 2025-12-06 120213" src="https://github.com/user-attachments/assets/7ad0c12f-a18b-4cbf-a661-f0ec07157197" />
+
+
 **RESULTS**
+Thus the OUTPUT’s of JK Flip Flop is verified by synthesizing and simulating the VERILOG code
+
